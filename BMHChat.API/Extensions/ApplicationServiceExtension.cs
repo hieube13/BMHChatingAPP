@@ -1,4 +1,6 @@
 ﻿using BMHChat.API.Data;
+using BMHChat.API.Helpers;
+using BMHChat.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMHChat.API.Extensions
@@ -14,7 +16,8 @@ namespace BMHChat.API.Extensions
                 options.UseSqlServer(connection);
             });
             services.AddCors();
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             return services;
         }

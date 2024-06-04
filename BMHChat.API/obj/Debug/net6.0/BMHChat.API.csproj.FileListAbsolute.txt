@@ -68,3 +68,7 @@ F:\Signalr\BMHChating\BMHChat.API\obj\Debug\net6.0\BMHChat.API.genruntimeconfig.
 F:\Signalr\BMHChating\BMHChat.API\obj\Debug\net6.0\ref\BMHChat.API.dll
 F:\Signalr\BMHChating\BMHChat.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
 F:\Signalr\BMHChating\BMHChat.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\Signalr\BMHChating\BMHChat.API\obj\Debug\net6.0\BMHChat.API.sourcelink.json
+F:\Signalr\BMHChating\BMHChat.API\bin\Debug\net6.0\Data\UserSeedData.json
+F:\Signalr\BMHChating\BMHChat.API\bin\Debug\net6.0\AutoMapper.dll
+F:\Signalr\BMHChating\BMHChat.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

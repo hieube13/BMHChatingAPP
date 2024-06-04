@@ -41,6 +41,11 @@ namespace BMHChat.API.Controllers
             {
                 var thing = _context.Users.Find(-1);
 
+                if (thing == null)
+                {
+                    return StatusCode(404, "User not found");
+                }
+
                 var thingToReturn = thing.ToString();
 
                 return thingToReturn;
