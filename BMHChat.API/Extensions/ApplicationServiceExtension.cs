@@ -1,6 +1,7 @@
 ﻿using BMHChat.API.Data;
 using BMHChat.API.Helpers;
 using BMHChat.API.Interfaces;
+using BMHChat.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMHChat.API.Extensions
@@ -18,6 +19,7 @@ namespace BMHChat.API.Extensions
             services.AddCors();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+            services.AddScoped<IPhotoService, PhotoService>();
 
             return services;
         }

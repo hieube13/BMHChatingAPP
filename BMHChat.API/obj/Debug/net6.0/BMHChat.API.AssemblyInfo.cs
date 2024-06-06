@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BMHChat.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6d6bc40d279b6298f082c135f5b6b00532d8bfc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9b1dcdfb17d64ddfacfaa83e75ec3965e646974")]
 [assembly: System.Reflection.AssemblyProductAttribute("BMHChat.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BMHChat.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
