@@ -34,7 +34,6 @@ export class AccountService {
         if(user)
         {
           this.setCurrentUser(user);
-          // this.currentUserSource.next(user);
         }
 
         return user;

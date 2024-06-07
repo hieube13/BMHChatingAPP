@@ -1,4 +1,5 @@
-﻿using BMHChat.API.Data;
+﻿using AutoMapper;
+using BMHChat.API.Data;
 using BMHChat.API.DTOs;
 using BMHChat.API.Entities;
 using BMHChat.API.Interfaces;
@@ -14,11 +15,13 @@ namespace BMHChat.API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenServices _tokenServices;
+        private readonly IMapper _mapper;
 
-        public AccountController(DataContext context, ITokenServices tokenServices)
+        public AccountController(DataContext context, ITokenServices tokenServices, IMapper mapper)
         {
             _context = context;
             _tokenServices = tokenServices;
+            _mapper = mapper;
         }
 
         [HttpPost("Register")]
@@ -29,14 +32,14 @@ namespace BMHChat.API.Controllers
                 return BadRequest("UserName is taken");
             }
 
+            var user = _mapper.Map<AppUser>(registerDto);
+
             using var hmac = new HMACSHA512();
 
-            var user = new AppUser
-            {
-                UserName = registerDto.UserName,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key,
-            };
+
+            user.UserName = registerDto.UserName.ToLower();
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
 
             _context.Users.Add(user);
 
@@ -45,7 +48,9 @@ namespace BMHChat.API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
-                Token = _tokenServices.CreateToken(user)
+                Token = _tokenServices.CreateToken(user),
+                KnowAs = user.KnowAs,
+                Gender = user.Gender
             };
         }
 
@@ -56,7 +61,8 @@ namespace BMHChat.API.Controllers
                     .Include(p => p.Photos)
                     .SingleOrDefaultAsync(x => x.UserName == loginDto.UserName);
 
-            if(user == null)
+
+            if (user == null)
             {
                 return Unauthorized("Invalid username");
             }

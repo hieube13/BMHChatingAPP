@@ -48,7 +48,9 @@ namespace BMHChat.API.Controllers
 
             //return Ok(result);
 
-            return await _userRrepository.GetMemberAsync(username);
+            var member = await _userRrepository.GetMemberAsync(username);
+
+            return member;
         }
 
         [HttpPut]

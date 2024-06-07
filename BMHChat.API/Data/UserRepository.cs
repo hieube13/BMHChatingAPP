@@ -20,18 +20,27 @@ namespace BMHChat.API.Data
 
         public async Task<MemberDto> GetMemberAsync(string userName)
         {
-            return await _context.Users
+            var user = await _context.Users
                         .Where(x => x.UserName == userName)
                         .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                         .SingleOrDefaultAsync();
+
+            if(user == null)
+            {
+                throw new Exception("Member not found.");
+            }
+
+            return user;
 
         }
 
         public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
-            return await _context.Users
+            var members = await _context.Users
                         .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                         .ToListAsync();
+
+            return members;
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -41,8 +50,8 @@ namespace BMHChat.API.Data
 
         public async Task<AppUser> GetUserByUserNameAsync(string userName)
         {
-            return await _context.Users.
-                Include(p => p.Photos)
+            return await _context.Users
+                .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == userName);
         }
 
